@@ -25,23 +25,30 @@
     <form action="" method="post" class="col-md-6 col-md-offset-3">
       {% csrf_token %}
       <div class="input-group">
-        <input type="text" class="form-control" name="city" placeholder="Search">
+        <input type="text" class="form-control" name="city" placeholder="Search" value="{{ city }}">
         <div class="input-group-btn">
           <button class="btn btn-default" type="submit">
             <i class="glyphicon glyphicon-search"></i>
           </button>
         </div>
-        <form>
+      </div>
+    </form>
   </center>
   <div class="row">
+    {% if searched and data.error %}
+    <div class="col-md-6 col-md-offset-3">
+      <h5 class="text-danger">{{ data.error }}</h5>
+    </div>
+    {% endif %}
+
     {% if data.country_code %}
     <div class="col-md-6 col-md-offset-3">
       <h1>{{city}}</h1>
-      <h3>country code : {{data.country_code}}</h1>
-        <h5>coordinate : {{data.coordinate}}</h5>
-        <h5>temp : {{data.temp}}</h5>
-        <h5>pressure : {{data.pressure}} </h5>
-        <h5>humidity : {{data.humidity}}</h5>
+      <h3>Country Code : {{data.country_code}}</h3>
+        <h5>Coordinate : {{data.coordinate}}</h5>
+        <h5>Temperature : {{data.temp}}</h5>
+        <h5>Pressure : {{data.pressure}} </h5>
+        <h5>Humidity : {{data.humidity}}</h5>
     </div>
     {% endif %}
   </div>
